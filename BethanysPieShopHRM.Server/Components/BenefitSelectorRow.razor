@@ -1,0 +1,25 @@
+﻿@inherits BenefitSelectorRowBase 
+
+
+<tr @key="Benefit">
+    <td>@Benefit.Description</td>
+    <td>
+        <input type="checkbox" checked="@Benefit.Selected"
+               @onchange="e => CheckBoxChanged(e, Benefit)" />
+    </td>
+
+    @if (Benefit.Selected)
+    {
+        <td>@Benefit.StartDate</td>
+        <td>
+            <DateField @bind-Date="Benefit.EndDate" OnChdate="ChDate"></DateField>
+            @*<DateField  @onchange="async ()=> await OnTryAdjust.InvokeAsync(false)"></DateField>*@
+
+        </td>
+    }
+    else
+    {
+        <td></td>
+        <td></td>
+    }
+</tr>

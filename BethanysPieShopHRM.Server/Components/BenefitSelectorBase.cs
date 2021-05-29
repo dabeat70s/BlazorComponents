@@ -25,22 +25,35 @@ namespace BethanysPieShopHRM.Server.Components
         protected async override Task OnInitializedAsync()
         {
             Benefits = await BenefitDataService.GetForEmployee(Employee);
+           
         }
 
-        public async Task CheckBoxChanged(ChangeEventArgs e, BenefitModel benefit)
-        {
-            var newValue = (bool)e.Value;
-            benefit.Selected = newValue;
-            SaveButtonDisabled = false;
+        //public async Task CheckBoxChanged(ChangeEventArgs e, BenefitModel benefit)
+        //{
+        //    var newValue = (bool)e.Value;
+        //    benefit.Selected = newValue;
+        //    SaveButtonDisabled = false;
 
-            if (newValue)
+        //    if (newValue)
+        //    {
+        //        benefit.StartDate = DateTime.Now;
+        //        benefit.EndDate = DateTime.Now.AddYears(1);
+        //    }
+
+        //    await OnPremiumToggle.InvokeAsync(Benefits.Any(b => b.Premium && b.Selected));
+        //}
+
+
+        public async Task TryAdjust(bool State)
+        {
+            SaveButtonDisabled = false;
+            if (State)
             {
-                benefit.StartDate = DateTime.Now;
-                benefit.EndDate = DateTime.Now.AddYears(1);
+                await OnPremiumToggle.InvokeAsync(Benefits.Any(b => b.Premium && b.Selected));
             }
 
-            await OnPremiumToggle.InvokeAsync(Benefits.Any(b => b.Premium && b.Selected));
         }
+
 
         public void SaveClick()
         {
