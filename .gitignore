@@ -4,6 +4,11 @@
 
 # Logs
 Logs/
+BethanysPieShopHRM.sln
+BethanysPieShopHRM.Shared/
+BethanysPieShopHRM.Api/
+
+
 
 # Generated files
 project.lock.json
